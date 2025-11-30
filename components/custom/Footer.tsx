@@ -63,7 +63,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 pb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 pt-3 md:pt-0 pb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         <Image src={'/trustpilot.png'} alt="" width={200} height={200} />
       </div>
       <div className="border-t border-gray-800 py-6 text-center">

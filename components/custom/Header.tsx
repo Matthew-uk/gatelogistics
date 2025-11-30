@@ -259,7 +259,7 @@ export default function Header() {
                 </li>
                 <li role="none">
                   <Link
-                    href="/solutions/warehouse"
+                    href="/solutions/warehouse-and-storage"
                     role="menuitem"
                     className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-primary"
                     onClick={() => {
@@ -440,7 +440,7 @@ export default function Header() {
                 <li>
                   <Link
                     className="block py-2 text-sm hover:text-brand-700 transition"
-                    href="/solutions/warehouse"
+                    href="/solutions/warehouse-and-storage"
                     onClick={() => {
                       setOpen(false);
                       setMobileSolutionsOpen(false);

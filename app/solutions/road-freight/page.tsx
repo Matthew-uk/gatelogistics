@@ -1,10 +1,12 @@
 import React, { JSX } from 'react';
 import Image from 'next/image';
+import RoadHero from '@/components/custom/RoadHero';
 
 export default function DetailsSection(): JSX.Element {
   return (
     <section className="py-16 bg-white font-poppins">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <RoadHero />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left column - main content */}
           <div className="lg:col-span-8">
