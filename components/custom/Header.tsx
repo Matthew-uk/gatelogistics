@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [open, setOpen] = useState(false); // mobile menu
@@ -14,6 +15,20 @@ export default function Header() {
 
   // small delay (ms) to tolerate pointer gaps when moving from button -> panel
   const CLOSE_DELAY = 150;
+
+  // Next.js pathname watcher — when route changes, close all menus immediately
+  const pathname = usePathname();
+  useEffect(() => {
+    // close menus on navigation
+    setOpen(false);
+    setSolutionsOpen(false);
+    setMobileSolutionsOpen(false);
+    // also clear any scheduled close
+    if (closeTimeoutRef.current) {
+      window.clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  }, [pathname]);
 
   // helper: schedule close
   const scheduleClose = (cb: () => void) => {
@@ -75,7 +90,6 @@ export default function Header() {
 
     function onFocusOut(e: FocusEvent) {
       // if focus moved outside the dropdown, schedule close
-      // relatedTarget is where focus moved to
       const related = e.relatedTarget as Node | null;
       if (related && node && node.contains(related)) {
         // focus moved to something inside dropdown -> keep open
@@ -94,7 +108,7 @@ export default function Header() {
   }, [dropdownRef.current]);
 
   return (
-    <header className="w-full bg-white border-b border-gray-200">
+    <header className="w-full bg-white border-b border-gray-200 font-poppins fixed top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
         {/* Logo */}
         <div className="flex items-center">
@@ -114,11 +128,27 @@ export default function Header() {
           <Link
             className="text-brand-700 hover:text-brand-800 transition"
             href="/"
+            onClick={() => {
+              // ensure menus close if link clicked while dropdown open
+              setSolutionsOpen(false);
+              setMobileSolutionsOpen(false);
+              setOpen(false);
+              cancelScheduledClose();
+            }}
           >
             Home
           </Link>
 
-          <Link className="hover:text-brand-700 transition" href="/about">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/about"
+            onClick={() => {
+              setSolutionsOpen(false);
+              setMobileSolutionsOpen(false);
+              setOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             About
           </Link>
 
@@ -187,8 +217,10 @@ export default function Header() {
                     role="menuitem"
                     className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-primary"
                     onClick={() => {
-                      // when user clicks a link, we don't force-close before navigation;
-                      // let Next.js handle the route change. Still cancel scheduled close.
+                      // ensure menus close on click (route change will also trigger closure via pathname watcher)
+                      setSolutionsOpen(false);
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
                       cancelScheduledClose();
                     }}
                   >
@@ -200,7 +232,12 @@ export default function Header() {
                     href="/solutions/road-freight"
                     role="menuitem"
                     className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-primary"
-                    onClick={() => cancelScheduledClose()}
+                    onClick={() => {
+                      setSolutionsOpen(false);
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Road Freight Forwarding
                   </Link>
@@ -210,7 +247,12 @@ export default function Header() {
                     href="/solutions/ocean-freight"
                     role="menuitem"
                     className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-primary"
-                    onClick={() => cancelScheduledClose()}
+                    onClick={() => {
+                      setSolutionsOpen(false);
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Ocean Freight Forwarding
                   </Link>
@@ -220,7 +262,12 @@ export default function Header() {
                     href="/solutions/warehouse"
                     role="menuitem"
                     className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-primary"
-                    onClick={() => cancelScheduledClose()}
+                    onClick={() => {
+                      setSolutionsOpen(false);
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Warehouse And Storage
                   </Link>
@@ -229,13 +276,40 @@ export default function Header() {
             </div>
           </div>
 
-          <Link className="hover:text-brand-700 transition" href="/faqs">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/faqs"
+            onClick={() => {
+              setSolutionsOpen(false);
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             FAQ
           </Link>
-          <Link className="hover:text-brand-700 transition" href="/contact">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/contact"
+            onClick={() => {
+              setSolutionsOpen(false);
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             Contact
           </Link>
-          <Link className="hover:text-brand-700 transition" href="/tracking">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/tracking"
+            onClick={() => {
+              setSolutionsOpen(false);
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             Tracking
           </Link>
         </nav>
@@ -260,10 +334,28 @@ export default function Header() {
         `}
       >
         <nav className="flex flex-col gap-4 text-sm font-medium">
-          <Link className="hover:text-brand-700 transition" href="/">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/"
+            onClick={() => {
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              setSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             Home
           </Link>
-          <Link className="hover:text-brand-700 transition" href="/about">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/about"
+            onClick={() => {
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              setSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             About
           </Link>
 
@@ -306,6 +398,13 @@ export default function Header() {
                   <Link
                     className="block py-2 text-sm hover:text-brand-700 transition"
                     href="/solutions/air-freight"
+                    onClick={() => {
+                      // close mobile menu after navigation
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      setSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Air Freight Forwarding
                   </Link>
@@ -314,6 +413,12 @@ export default function Header() {
                   <Link
                     className="block py-2 text-sm hover:text-brand-700 transition"
                     href="/solutions/road-freight"
+                    onClick={() => {
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      setSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Road Freight Forwarding
                   </Link>
@@ -322,6 +427,12 @@ export default function Header() {
                   <Link
                     className="block py-2 text-sm hover:text-brand-700 transition"
                     href="/solutions/ocean-freight"
+                    onClick={() => {
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      setSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Ocean Freight Forwarding
                   </Link>
@@ -330,6 +441,12 @@ export default function Header() {
                   <Link
                     className="block py-2 text-sm hover:text-brand-700 transition"
                     href="/solutions/warehouse"
+                    onClick={() => {
+                      setOpen(false);
+                      setMobileSolutionsOpen(false);
+                      setSolutionsOpen(false);
+                      cancelScheduledClose();
+                    }}
                   >
                     Warehouse And Storage
                   </Link>
@@ -338,13 +455,40 @@ export default function Header() {
             </div>
           </div>
 
-          <Link className="hover:text-brand-700 transition" href="/faqs">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/faqs"
+            onClick={() => {
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              setSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             FAQ
           </Link>
-          <Link className="hover:text-brand-700 transition" href="/contact">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/contact"
+            onClick={() => {
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              setSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             Contact
           </Link>
-          <Link className="hover:text-brand-700 transition" href="/tracking">
+          <Link
+            className="hover:text-brand-700 transition"
+            href="/tracking"
+            onClick={() => {
+              setOpen(false);
+              setMobileSolutionsOpen(false);
+              setSolutionsOpen(false);
+              cancelScheduledClose();
+            }}
+          >
             Tracking
           </Link>
         </nav>
