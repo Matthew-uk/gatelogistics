@@ -13,7 +13,7 @@ type MiniCardProps = {
   text: string;
 };
 
-const MiniCard = ({ icon: Icon, text }: MiniCardProps) => {
+export const MiniCard = ({ icon: Icon, text }: MiniCardProps) => {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="bg-primary p-4 rounded-full">

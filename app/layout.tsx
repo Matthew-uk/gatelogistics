@@ -7,6 +7,8 @@ import {
   Urbanist,
 } from 'next/font/google';
 import './globals.css';
+import Header from '@/components/custom/Header';
+import Footer from '@/components/custom/Footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -51,7 +53,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${montserrat.variable} ${urbanist.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

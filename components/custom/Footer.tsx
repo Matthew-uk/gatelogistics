@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white mt-12">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <footer className="bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 pt-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
           <Image src={'/logo-white.png'} alt="Logo" width={200} height={200} />
@@ -63,7 +63,9 @@ export default function Footer() {
           </p>
         </div>
       </div>
-
+      <div className="max-w-7xl mx-auto px-6 pb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+        <Image src={'/trustpilot.png'} alt="" width={200} height={200} />
+      </div>
       <div className="border-t border-gray-800 py-6 text-center">
         <p className="text-gray-500 text-sm">
           © {new Date().getFullYear()} 24 Top Global Xpress. All rights

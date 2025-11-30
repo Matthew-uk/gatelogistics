@@ -12,7 +12,7 @@ import About from '@/components/custom/About';
 export default function Page() {
   return (
     <div className="min-h-screen flex flex-col font-poppins">
-      <Header />
+      {/* <Header /> */}
       <main className="w-full">
         <Hero />
         <About />
@@ -22,7 +22,7 @@ export default function Page() {
         {/* <Stats /> */}
         <Testimonials />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
