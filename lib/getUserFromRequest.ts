@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import cookie from 'cookie';
-import { connectToDatabase } from './mongodb';
+import connectToDatabase from './mongodb';
 import User from '../models/User';
 
 export async function getUserFromRequest(req: any) {
