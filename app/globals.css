@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -35,7 +35,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-primary: #FEA82F;
+  --color-primary: #fea82f;
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -121,5 +121,33 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* print styles */
+@media print {
+  /* hide header/nav and admin controls */
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  /* make the content fit the page */
+  main {
+    background: #fff;
+    color: #000;
+  }
+  .tracking-container {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  /* enlarge barcode */
+  svg[role='img'] {
+    transform: scale(1.2);
+  }
+  /* avoid page breaks inside major sections */
+  .no-break {
+    page-break-inside: avoid;
   }
 }

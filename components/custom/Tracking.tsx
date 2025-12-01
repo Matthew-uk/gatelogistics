@@ -143,3 +143,5 @@ export default function TrackingSection() {
     </section>
   );
 }
+
+// Build this Tracking Section with Next js and tailwindcss (.tsx), use shacn components where necessary, add react-hook-form and axios post build it to be a pixel perfect match the design. Think long and hard, no shortcuts and don't be lazy
