@@ -25,7 +25,7 @@ export async function comparePassword(
 
 export function generateToken(payload: Record<string, any>): string {
   const options: SignOptions = {
-    expiresIn: JWT_EXPIRES_IN,
+    expiresIn: parseInt(JWT_EXPIRES_IN, 10),
   };
   return jwt.sign(payload, JWT_SECRET, options);
 }
