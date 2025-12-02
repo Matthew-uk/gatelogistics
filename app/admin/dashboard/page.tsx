@@ -326,7 +326,7 @@ export default function DashboardPage(): JSX.Element {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8 mt-12">
+    <main className="min-h-screen bg-gray-50 p-8 mt-12 font-poppins">
       <Toasts />
 
       <div className="max-w-7xl mx-auto space-y-6">

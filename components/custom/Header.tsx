@@ -302,7 +302,7 @@ export default function Header() {
           </Link>
           <Link
             className="hover:text-brand-700 transition"
-            href="/tracking"
+            href="/trackings"
             onClick={() => {
               setSolutionsOpen(false);
               setOpen(false);
@@ -481,7 +481,7 @@ export default function Header() {
           </Link>
           <Link
             className="hover:text-brand-700 transition"
-            href="/tracking"
+            href="/trackings"
             onClick={() => {
               setOpen(false);
               setMobileSolutionsOpen(false);

@@ -40,7 +40,10 @@ interface Tracking {
 async function getTrackingData(id: string): Promise<Tracking | null> {
   try {
     // Use absolute URL for server-side fetching
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    const baseUrl =
+      process.env.NEXT_PUBLIC_API_URL ||
+      'https://gatelogistics.vercel.app' ||
+      'http://localhost:3000';
     const res = await axios.get(`${baseUrl}/api/trackings/${id}`, {
       // Axios timeout to prevent hanging requests
       timeout: 10000,
@@ -68,7 +71,7 @@ export default async function TrackingPage(props: Props) {
 
   if (!tracking) {
     return (
-      <main className="min-h-screen flex items-center justify-center">
+      <main className="min-h-screen flex items-center justify-center font-poppins">
         <div className="text-center p-8">
           <h2 className="text-xl font-semibold">Tracking not found</h2>
           <p className="mt-2 text-sm text-gray-600">
@@ -80,7 +83,7 @@ export default async function TrackingPage(props: Props) {
   }
 
   return (
-    <main className="bg-gray-100 min-h-screen py-10 mt-8">
+    <main className="bg-gray-100 min-h-screen py-10 mt-8 font-poppins">
       <div className="max-w-6xl mx-auto bg-white border border-gray-200 shadow-sm tracking-container no-break">
         <div className="px-6 py-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>

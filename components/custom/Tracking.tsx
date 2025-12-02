@@ -8,6 +8,7 @@ import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils'; // optional; replace with your helper or inline concat
 import { Input } from '@/components/ui/input'; // adapt to your shadcn exports
 import { Button } from '@/components/ui/button'; // adapt to your shadcn exports
+import { useRouter } from 'next/navigation';
 
 type FormValues = {
   trackingNumber: string;
@@ -23,6 +24,8 @@ export default function TrackingSection() {
     defaultValues: { trackingNumber: '' },
   });
 
+  const router = useRouter();
+
   const [result, setResult] = useState<null | {
     status: string;
     summary: string;
@@ -30,22 +33,23 @@ export default function TrackingSection() {
   const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(values: FormValues) {
-    setError(null);
-    setResult(null);
-    try {
-      const resp = await axios.post('/api/track', {
-        trackingNumber: values.trackingNumber,
-      });
-      setResult(resp.data);
-      // keep the tracking number in the input or reset depending on UX; I'll reset
-      reset();
-    } catch (err: any) {
-      console.error(err);
-      setError(
-        err?.response?.data?.message ??
-          'Could not fetch tracking info. Please try again.',
-      );
-    }
+    router.push(`/trackings/${values.trackingNumber}`);
+    // setError(null);
+    // setResult(null);
+    // try {
+    //   const resp = await axios.post('/api/track', {
+    //     trackingNumber: values.trackingNumber,
+    //   });
+    //   setResult(resp.data);
+    //   // keep the tracking number in the input or reset depending on UX; I'll reset
+    //   reset();
+    // } catch (err: any) {
+    //   console.error(err);
+    //   setError(
+    //     err?.response?.data?.message ??
+    //       'Could not fetch tracking info. Please try again.',
+    //   );
+    // }
   }
 
   return (
