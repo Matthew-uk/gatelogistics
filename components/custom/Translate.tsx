@@ -120,10 +120,10 @@ export default function GoogleTranslate() {
             id="custom-google-translate"
             value={selected}
             onChange={(e) => applyLanguage(e.target.value)}
-            className="appearance-none min-w-[220px] sm:min-w-[280px] bg-white/6 text-white text-sm py-2 pl-3 pr-8 rounded-lg shadow-sm backdrop-blur-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-urbanist"
+            className="appearance-none min-w-[220px] sm:min-w-[280px] bg-primary text-white text-sm py-2 pl-3 pr-8 rounded-lg shadow-sm backdrop-blur-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition font-urbanist"
             aria-label="Translate page"
           >
-            <option className="font-urbanist" value="original">
+            <option className="font-urbanist" value="en">
               Original (English)
             </option>
 
@@ -144,6 +144,9 @@ export default function GoogleTranslate() {
             {/* If widget failed to load or is blocked, provide a sensible fallback list */}
             {loaded && langs.length === 0 && (
               <>
+                <option className="font-urbanist" value="en">
+                  English
+                </option>
                 <option className="font-urbanist" value="es">
                   Spanish
                 </option>
@@ -156,22 +159,159 @@ export default function GoogleTranslate() {
                 <option className="font-urbanist" value="zh-CN">
                   Chinese (Simplified)
                 </option>
-                <option className="font-urbanist" value="ru">
-                  Russian
+                <option className="font-urbanist" value="zh-TW">
+                  Chinese (Traditional)
                 </option>
                 <option className="font-urbanist" value="ar">
                   Arabic
                 </option>
-                <option className="font-urbanist" value="pt">
-                  Portuguese
-                </option>
                 <option className="font-urbanist" value="hi">
                   Hindi
                 </option>
-                <option className="font-urbanist" value="en">
-                  English
+                <option className="font-urbanist" value="pt">
+                  Portuguese
                 </option>
-                {/* you can extend this static fallback if you need */}
+                <option className="font-urbanist" value="ru">
+                  Russian
+                </option>
+                <option className="font-urbanist" value="ja">
+                  Japanese
+                </option>
+                <option className="font-urbanist" value="ko">
+                  Korean
+                </option>
+                <option className="font-urbanist" value="it">
+                  Italian
+                </option>
+                <option className="font-urbanist" value="nl">
+                  Dutch
+                </option>
+                <option className="font-urbanist" value="sv">
+                  Swedish
+                </option>
+                <option className="font-urbanist" value="no">
+                  Norwegian
+                </option>
+                <option className="font-urbanist" value="da">
+                  Danish
+                </option>
+                <option className="font-urbanist" value="fi">
+                  Finnish
+                </option>
+                <option className="font-urbanist" value="pl">
+                  Polish
+                </option>
+                <option className="font-urbanist" value="tr">
+                  Turkish
+                </option>
+                <option className="font-urbanist" value="el">
+                  Greek
+                </option>
+                <option className="font-urbanist" value="cs">
+                  Czech
+                </option>
+                <option className="font-urbanist" value="sk">
+                  Slovak
+                </option>
+                <option className="font-urbanist" value="hu">
+                  Hungarian
+                </option>
+                <option className="font-urbanist" value="ro">
+                  Romanian
+                </option>
+                <option className="font-urbanist" value="bg">
+                  Bulgarian
+                </option>
+                <option className="font-urbanist" value="uk">
+                  Ukrainian
+                </option>
+                <option className="font-urbanist" value="he">
+                  Hebrew
+                </option>
+                <option className="font-urbanist" value="th">
+                  Thai
+                </option>
+                <option className="font-urbanist" value="vi">
+                  Vietnamese
+                </option>
+                <option className="font-urbanist" value="id">
+                  Indonesian
+                </option>
+                <option className="font-urbanist" value="ms">
+                  Malay
+                </option>
+                <option className="font-urbanist" value="fa">
+                  Persian (Farsi)
+                </option>
+                <option className="font-urbanist" value="bn">
+                  Bengali
+                </option>
+                <option className="font-urbanist" value="ta">
+                  Tamil
+                </option>
+                <option className="font-urbanist" value="te">
+                  Telugu
+                </option>
+                <option className="font-urbanist" value="mr">
+                  Marathi
+                </option>
+                <option className="font-urbanist" value="gu">
+                  Gujarati
+                </option>
+                <option className="font-urbanist" value="ur">
+                  Urdu
+                </option>
+                <option className="font-urbanist" value="sw">
+                  Swahili
+                </option>
+                <option className="font-urbanist" value="am">
+                  Amharic
+                </option>
+                <option className="font-urbanist" value="zu">
+                  Zulu
+                </option>
+                <option className="font-urbanist" value="xh">
+                  Xhosa
+                </option>
+                <option className="font-urbanist" value="yo">
+                  Yoruba
+                </option>
+                <option className="font-urbanist" value="ig">
+                  Igbo
+                </option>
+                <option className="font-urbanist" value="ha">
+                  Hausa
+                </option>
+                <option className="font-urbanist" value="km">
+                  Khmer
+                </option>
+                <option className="font-urbanist" value="lo">
+                  Lao
+                </option>
+                <option className="font-urbanist" value="my">
+                  Burmese
+                </option>
+                <option className="font-urbanist" value="si">
+                  Sinhala
+                </option>
+                <option className="font-urbanist" value="ka">
+                  Georgian
+                </option>
+                <option className="font-urbanist" value="kk">
+                  Kazakh
+                </option>
+                <option className="font-urbanist" value="mn">
+                  Mongolian
+                </option>
+                <option className="font-urbanist" value="et">
+                  Estonian
+                </option>
+                <option className="font-urbanist" value="lv">
+                  Latvian
+                </option>
+                <option className="font-urbanist" value="lt">
+                  Lithuanian
+                </option>
               </>
             )}
           </select>
