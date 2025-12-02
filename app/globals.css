@@ -151,3 +151,58 @@
     page-break-inside: avoid;
   }
 }
+
+/* google translate */
+#google_translate_element {
+  position: fixed;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  bottom: 20px;
+  left: 20px;
+  background: transparent;
+  color: #000;
+  height: 40px;
+  padding-inline: 5px;
+  z-index: 999;
+}
+
+#google_translate_element select {
+  /* background-color: transparent !important; */
+  @apply rounded-sm z-50 bg-white text-blue-800 font-semibold;
+  border-radius: 4px;
+  height: 60px;
+  padding: 8px;
+  font-family: var(--font-montserrat), 'Courier New', Courier, monospace;
+  color: #000;
+}
+
+/* Hide Google Translate logo and text */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+}
+
+/* Hide Google Translate toolbar */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.VIpgJd-ZVi9od-ORHb img {
+  display: none !important;
+}
+
+.goog-te-gadget img {
+  display: none !important;
+}
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none !important;
+}
+
+.VIpgJd-ZVi9od-ORHb {
+  display: none;
+}

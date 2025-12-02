@@ -11,6 +11,7 @@ import Header from '@/components/custom/Header';
 import Footer from '@/components/custom/Footer';
 import Script from 'next/script';
 import SmartsuppChat from '@/components/custom/Smartsupp';
+import GoogleTranslate from '@/components/custom/Translate';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -60,6 +61,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <SmartsuppChat />
+        <GoogleTranslate />
       </body>
     </html>
   );
