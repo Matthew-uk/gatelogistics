@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'; // optional; replace with your helper or inlin
 import { Input } from '@/components/ui/input'; // adapt to your shadcn exports
 import { Button } from '@/components/ui/button'; // adapt to your shadcn exports
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type FormValues = {
   trackingNumber: string;
@@ -29,27 +30,29 @@ export default function TrackingSection() {
   const [result, setResult] = useState<null | {
     status: string;
     summary: string;
+    code: string;
+    trackingCode: string;
   }>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(values: FormValues) {
-    router.push(`/trackings/${values.trackingNumber}`);
-    // setError(null);
-    // setResult(null);
-    // try {
-    //   const resp = await axios.post('/api/track', {
-    //     trackingNumber: values.trackingNumber,
-    //   });
-    //   setResult(resp.data);
-    //   // keep the tracking number in the input or reset depending on UX; I'll reset
-    //   reset();
-    // } catch (err: any) {
-    //   console.error(err);
-    //   setError(
-    //     err?.response?.data?.message ??
-    //       'Could not fetch tracking info. Please try again.',
-    //   );
-    // }
+    // router.push(`/trackings/${values.trackingNumber}`);
+    setError(null);
+    setResult(null);
+    try {
+      const resp = await axios.post('/api/trackings', {
+        trackingNumber: values.trackingNumber,
+      });
+      setResult(resp.data);
+      // keep the tracking number in the input or reset depending on UX; I'll reset
+      reset();
+    } catch (err: any) {
+      console.error(err);
+      setError(
+        err?.response?.data?.message ??
+          'Could not fetch tracking info. Please try again.',
+      );
+    }
   }
 
   return (
@@ -103,18 +106,20 @@ export default function TrackingSection() {
       </form>
 
       {/* Big image centered */}
-      <div className="w-full flex justify-center">
-        <div className="relative w-full max-w-3xl h-[240px] lg:h-[460px]">
-          <Image
-            src="/faq-truck.jpg"
-            alt="truck and forklift"
-            fill
-            style={{ objectFit: 'contain' }}
-            sizes="(min-width: 1024px) 60vw, 100vw"
-            priority
-          />
+      {!result && !error && (
+        <div className="w-full flex justify-center">
+          <div className="relative w-full max-w-3xl h-[240px] lg:h-[460px]">
+            <Image
+              src="/faq-truck.jpg"
+              alt="truck and forklift"
+              fill
+              style={{ objectFit: 'contain' }}
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              priority
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Result / error area (subtle box centered under image) */}
       <div className="mt-10 flex justify-center">
@@ -128,11 +133,18 @@ export default function TrackingSection() {
           {result && (
             <div className="border border-gray-200 rounded p-6 flex items-center justify-between bg-white shadow-sm">
               <div>
-                <p className="text-sm text-gray-500">Tracking status</p>
-                <p className="mt-2 text-lg font-semibold text-gray-800">
+                <h2 className="text-3xl">{result?.trackingCode}</h2>
+                <p className="text-sm text-gray-500">Tracking status:</p>
+                <p className="mt-1 text-lg font-semibold text-orange-600">
                   {result.status}
                 </p>
                 <p className="mt-1 text-sm text-gray-600">{result.summary}</p>
+                <Link
+                  href={`/trackings/${result.code}`}
+                  className="inline-block py-1 text-xs font-semibold text-orange-600 rounded underline cursor-pointer mt-4"
+                >
+                  View Details
+                </Link>
               </div>
 
               <div className="text-right">

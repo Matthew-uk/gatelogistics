@@ -12,6 +12,7 @@ import Footer from '@/components/custom/Footer';
 import Script from 'next/script';
 import SmartsuppChat from '@/components/custom/Smartsupp';
 import GoogleTranslate from '@/components/custom/Translate';
+import NextTopLoader from 'nextjs-toploader';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${montserrat.variable} ${urbanist.variable} antialiased`}
       >
+        <NextTopLoader />
         <Header />
         {children}
         <Footer />
