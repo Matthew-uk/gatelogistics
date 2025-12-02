@@ -24,10 +24,10 @@ export async function PATCH(
 ) {
   // update status or push events (admin only)
   await connectDB();
-  const token = getTokenFromRequest(request);
-  const user = token ? verifyToken(token) : null;
-  if (!user)
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  //   const token = getTokenFromRequest(request);
+  //   const user = token ? verifyToken(token) : null;
+  //   if (!user)
+  //     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { id } = await params; // Await params before accessing properties
   const body = await request.json();

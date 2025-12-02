@@ -9,10 +9,10 @@ import mongoose from 'mongoose';
 export async function POST(request: NextRequest) {
   await connectDB();
   try {
-    const token = getTokenFromRequest(request);
-    const user = token ? verifyToken(token) : null;
-    if (!user)
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // const token = getTokenFromRequest(request);
+    // const user = token ? verifyToken(token) : null;
+    // if (!user)
+    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const body = await request.json();
 
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       parcel: body.parcel || {},
       events: body.events || [],
       additionalInfo: body.additionalInfo || '',
-      createdBy: new mongoose.Types.ObjectId(user.id),
+      createdBy: 'Admin',
     };
 
     const tracked = await Tracking.create(payload);

@@ -56,7 +56,7 @@ const trackingSchema = new Schema<ITracking>(
     parcel: { type: Object },
     events: { type: [eventSchema], default: [] },
     additionalInfo: String,
-    createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    createdBy: { type: String },
   },
   { timestamps: true },
 );
