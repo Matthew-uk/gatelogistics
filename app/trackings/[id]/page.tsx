@@ -125,6 +125,7 @@ export default async function TrackingPage(props: Props) {
                   {tracking.sender?.email || 'N/A'}
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
+                  <span className="font-medium text-gray-700">Address:</span>{' '}
                   {tracking.sender?.address || 'N/A'}
                 </div>
               </div>
@@ -144,6 +145,7 @@ export default async function TrackingPage(props: Props) {
                   {tracking.receiver?.email || 'N/A'}
                 </div>
                 <div className="text-sm text-gray-500 mt-2">
+                  <span className="font-medium text-gray-700">Address:</span>{' '}
                   {tracking.receiver?.address || 'N/A'}
                 </div>
               </div>
